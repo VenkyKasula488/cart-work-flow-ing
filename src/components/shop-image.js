@@ -1,5 +1,7 @@
 import { LitElement, html } from 'lit-element';
-
+/**
+ * Thumbnail component for a product/item
+ */
 class ShopImage extends LitElement {
   render() {
     return html` <style>

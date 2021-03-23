@@ -19,7 +19,9 @@ import '@lion/select/lion-select.js';
 store.addReducers({
   checkout,
 });
-
+/**
+ * Delivery address page
+ */
 class ShopCheckout extends connect(store)(PageViewElement) {
   render() {
     const cartList = this._cart || [];

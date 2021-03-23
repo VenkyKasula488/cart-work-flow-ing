@@ -19,6 +19,9 @@ store.addReducers({
   checkout,
 });
 
+/**
+ * Payment page
+ */
 class ShopPayment extends connect(store)(PageViewElement) {
   render() {
     const cartList = this._cart || [];

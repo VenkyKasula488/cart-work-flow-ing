@@ -7,6 +7,9 @@ import '@lion/icon/lion-icon.js';
 import './shop-icons.js';
 import { removeFromCart } from '../actions/cart.js';
 
+/**
+ * Product/item consisting of the product image, title, quantity, price and delete icon
+ */
 class ShopCartItem extends LitElement {
   render() {
     const entry = this.entry;

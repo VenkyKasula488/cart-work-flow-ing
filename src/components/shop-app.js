@@ -15,6 +15,9 @@ import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 import { store } from '../store.js';
 import { updateLocation } from '../actions/app.js';
 
+/**
+ * The core application - lays out the header and pages
+ */
 class ShopApp extends connect(store)(LitElement) {
   render() {
     return html`

@@ -2,6 +2,9 @@ import { LitElement, html } from 'lit-element';
 import { shopButtonStyle } from './shop-button-style.js';
 import { shopFormStyle } from './shop-form-style.js';
 
+/**
+ * Final confirmation page that shows post checkout
+ */
 class ShopConfirmation extends LitElement {
   render() {
     const stepListItems = [

@@ -8,7 +8,9 @@ import { shopFormStyle } from './shop-form-style.js';
 import { store } from '../store.js';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { sortCartDetails } from '../helpers/sortCartDetails.js';
-
+/**
+ * Main cart to hold the items/products
+ */
 class ShopCart extends connect(store)(PageViewElement) {
   render() {
     const cartList = sortCartDetails(this._cart, 'fulfillmentType');
