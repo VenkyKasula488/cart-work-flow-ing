@@ -1,4 +1,7 @@
-import { UPDATE_CHECKOUT_STATE } from '../actions/checkout.js';
+import {
+  UPDATE_CHECKOUT_STATE,
+  SET_USER_ADDRESS,
+} from '../actions/checkout.js';
 import { UPDATE_LOCATION } from '../actions/app.js';
 
 /**
@@ -19,6 +22,11 @@ const checkout = (state = {}, action) => {
       return {
         ...state,
         state: action.state,
+      };
+    case SET_USER_ADDRESS:
+      return {
+        ...state,
+        address: action.address,
       };
     default:
       return state;

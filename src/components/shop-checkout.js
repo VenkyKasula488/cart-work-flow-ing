@@ -25,6 +25,7 @@ store.addReducers({
 class ShopCheckout extends connect(store)(PageViewElement) {
   render() {
     const cartList = this._cart || [];
+    const address = this._address;
     const stepListItems = [
       { name: 'Basket', progress: 'done' },
       { name: 'Delivery', progress: 'active' },
@@ -132,27 +133,43 @@ class ShopCheckout extends connect(store)(PageViewElement) {
                 <section>
                   <h2 id="accountInfoHeading">Account Information</h2>
                   <div class="row input-row">
-                    <lion-input name="firstName" label="First Name"></lion-input>
+                    <lion-input name="firstName" label="First Name" .modelValue=${
+                      address.correspondenceName
+                    }></lion-input>
                   </div>
                   <div class="row input-row">
+                  <lion-input name="email" label="Email" .modelValue=${
+                    address.personalEmailAddress
+                  }></lion-input>
+                </div>
+                  <div class="row input-row">
                     <lion-input type="tel" id="accountPhone" name="accountPhone"
-                    pattern="\\d{10,}" label="Phone Number">
+                    pattern="\\d{10,}" label="Phone Number" .modelValue=${
+                      address.phoneNumber
+                    }>
                     </lion-input>
                   </div>
                   <h2 id="shipAddressHeading">Shipping Address</h2>
                   <div class="row input-row">
                     <lion-input type="text" id="shipAddress" name="shipAddress"
-                    pattern=".{5,}" label="Address">
+                    pattern=".{5,}" label="Address" .modelValue=${
+                      address.addresses[0].street
+                    }>
                     </lion-input>
                   </div>
                   <div class="row input-row">
-                    <lion-input type="text" id="shipCity" name="shipCity" pattern=".{2,}" label="City">
+                    <lion-input type="text" id="shipCity" name="shipCity" pattern=".{2,}" label="City"
+                    .modelValue=${address.addresses[0].city}>
                     </lion-input>
                   </div>
                   <div class="row input-row">
-                    <lion-input type="text" id="shipState" name="shipState" pattern=".{2,}" label="State/Province">
+                    <lion-input type="text" id="shipState" name="shipState" pattern=".{2,}" label="House Number" .modelValue=${
+                      address.addresses[0].houseNumber
+                    }>
                     </lion-input>
-                    <lion-input type="text" id="shipZip" name="shipZip" pattern=".{4,}" label="Zip/Postal Code">
+                    <lion-input type="text" id="shipZip" name="shipZip" pattern=".{4,}" label="Zip/Postal Code" .modelValue=${
+                      address.addresses[0].postalCode
+                    }>
                     </lion-input>
                   </div>
                   <div class="column input-column">
@@ -302,12 +319,14 @@ class ShopCheckout extends connect(store)(PageViewElement) {
        * If true, the user must enter a billing address.
        */
       _hasBillingAddress: { type: Boolean },
+      _address: { type: Object },
     };
   }
 
   stateChanged(state) {
     this._cart = state.cart.basket;
     this._state = state.checkout.state;
+    this._address = state.checkout.address;
   }
 
   _validateForm(form) {

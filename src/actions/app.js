@@ -1,4 +1,5 @@
 import { fetchCategoriesIfNeeded } from './cart.js';
+import { fetchUserAddress } from './checkout.js';
 
 export const UPDATE_LOCATION = 'UPDATE_LOCATION';
 export const RECEIVE_LAZY_RESOURCES = 'RECEIVE_LAZY_RESOURCES';
@@ -36,6 +37,7 @@ export const updateLocation = (location) => async (dispatch, getState) => {
       await import('../components/shop-cart.js');
       break;
     case 'checkout':
+      await dispatch(fetchUserAddress());
       await import('../components/shop-checkout.js');
       break;
     case 'payment':
