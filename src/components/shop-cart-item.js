@@ -1,8 +1,7 @@
 import { LitElement, html } from 'lit-element';
-import '@polymer/paper-icon-button';
 import './shop-image.js';
-
 import { store } from '../store.js';
+import '@lion/input-stepper/lion-input-stepper.js';
 
 class ShopCartItem extends LitElement {
   render() {
@@ -34,9 +33,13 @@ class ShopCartItem extends LitElement {
           line-height: 20px;
           font-weight: 500;
           float: left;
-          width: calc(100% - 438px);
+          min-width: 250px;
           margin-top: 26px;
-          margin-right: 30px;
+          margin-right: 10px;
+          border: 1px solid red;
+        }
+        .flex .name {
+          min-width: 250px;
         }
 
         .name a {
@@ -68,19 +71,23 @@ class ShopCartItem extends LitElement {
         .price {
           min-width: 70px;
           width: 100px;
+          padding-left: 10px;
+          display: flex;
         }
 
-        .quantity {
+        /*.quantity {
           min-width: 80px;
           width: 160px;
-        }
+        }*/
 
         .flex {
           display: flex;
           flex: auto;
-          margin-left: 24px;
+          margin-left: 10px;
         }
-
+        lion-input-stepper input {
+          width: 30px;
+        }
         .detail {
           display: flex;
           align-items: center;
@@ -163,7 +170,16 @@ class ShopCartItem extends LitElement {
                 >
               </div>
               <div class="detail">
-                <div class="quantity">Qty: <span>${entry.quantity}</span></div>
+                <div class="quantity">
+                  <lion-input-stepper
+                    max="${entry.availableStock}"
+                    min="0"
+                    name="count"
+                    .modelValue=${entry.quantity}
+                  >
+                    <label slot="label">Qty:</label>
+                  </lion-input-stepper>
+                </div>
                 <div class="price">$${entry.price.toFixed(2)}</div>
               </div>
             </div>

@@ -49,10 +49,6 @@ class ShopApp extends connect(store)(LitElement) {
           }
         }
 
-        paper-icon-button {
-          color: var(--app-primary-color);
-        }
-
         .logo {
           text-align: center;
         }

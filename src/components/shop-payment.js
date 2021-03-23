@@ -45,12 +45,6 @@ class ShopPayment extends connect(store)(PageViewElement) {
           margin-bottom: 20px;
         }
 
-        paper-spinner-lite {
-          position: fixed;
-          top: calc(50% - 14px);
-          left: calc(50% - 14px);
-        }
-
         .billing-address-picker {
           margin: 28px 0;
           height: 20px;

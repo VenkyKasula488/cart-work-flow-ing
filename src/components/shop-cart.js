@@ -7,10 +7,11 @@ import { shopFormStyle } from './shop-form-style.js';
 
 import { store } from '../store.js';
 import { connect } from 'pwa-helpers/connect-mixin.js';
+import { sortCartDetails } from '../helpers/sortCartDetails.js';
 
 class ShopCart extends connect(store)(PageViewElement) {
   render() {
-    const cartList = this._cart || [];
+    const cartList = sortCartDetails(this._cart, 'fulfillmentType');
     const basketSummary = this._basketSummary;
     const stepListItems = [
       { name: 'Basket', progress: 'active' },

@@ -1,5 +1,4 @@
 // shop-app
-import '@polymer/paper-icon-button';
 import '@polymer/app-layout/app-drawer/app-drawer.js';
 
 // shop-list
@@ -13,9 +12,6 @@ import './progress-step.js';
 import './cart-button-controls.js';
 import './checkout-button-controls.js';
 import './payment-button-controls.js';
-
-// shop-checkout
-import '@polymer/paper-spinner/paper-spinner-lite.js';
 
 import { store } from '../store.js';
 import { installCart } from '../cart.js';
