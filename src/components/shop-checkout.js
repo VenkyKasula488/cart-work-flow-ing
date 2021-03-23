@@ -125,7 +125,7 @@ class ShopCheckout extends connect(store)(PageViewElement) {
               </progress-step>
 
               <header class="subsection">
-                <h1>Delivery Address </h1>
+                <h1>The Delivery Address</h1>
               </header>
 
               <div class="subsection grid">

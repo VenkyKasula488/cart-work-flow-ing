@@ -31,7 +31,7 @@ class PaymentButtonControls extends LitElement {
           Previous
         </lion-button>
         <lion-button @click=${(ev) => (window.location = '/confirmation')}>
-          Next
+          Confirm Payment
         </lion-button>
       </div>`;
   }

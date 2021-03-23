@@ -37,6 +37,10 @@ class ShopCart extends connect(store)(PageViewElement) {
           margin: 0 86px 0 24px;
         }
 
+        .empty-cart {
+          font-size: 20px;
+        }
+
         @media (max-width: 767px) {
           .subtotal {
             margin: 0 0 0 24px;
@@ -52,7 +56,7 @@ class ShopCart extends connect(store)(PageViewElement) {
                   .stepListItems="${stepListItems}"
                 ></progress-step>
                 <header>
-                  <h1>Your Cart</h1>
+                  <h1>Your basket overview</h1>
                   <span
                     >${`(${cartList.length} item${
                       cartList.length > 1 ? 's' : ''
@@ -75,7 +79,7 @@ class ShopCart extends connect(store)(PageViewElement) {
                 </div>
                 <cart-button-controls> </cart-button-controls>
               `
-            : html` <p class="empty-cart">Your Cart Is Empty.</p> `}
+            : html` <p class="empty-cart">Cart is empty</p> `}
         </div>
       </div>`;
   }

@@ -136,7 +136,7 @@ class ShopPayment extends connect(store)(PageViewElement) {
                           <progress-step .stepListItems="${stepListItems}">
                           </progress-step>
                           <header class="subsection">
-                            <h1>Payment Section</h1>
+                            <h1>The Payment Step</h1>
                           </header>
 
                           <div class="subsection grid">
