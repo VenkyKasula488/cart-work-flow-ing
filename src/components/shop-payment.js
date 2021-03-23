@@ -7,11 +7,13 @@ import { shopCommonStyle } from './shop-common-style.js';
 import { shopFormStyle } from './shop-form-style.js';
 import { shopInputStyle } from './shop-input-style.js';
 import { shopSelectStyle } from './shop-select-style.js';
-
 import { store } from '../store.js';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { updateCheckoutState } from '../actions/checkout.js';
 import checkout from '../reducers/checkout.js';
+import '@lion/form/lion-form.js';
+import '@lion/input/lion-input.js';
+import '@lion/select/lion-select.js';
 
 store.addReducers({
   checkout,
@@ -114,119 +116,95 @@ class ShopPayment extends connect(store)(PageViewElement) {
         ${this._state === 'init'
           ? html`
               <div state="init">
-                <form id="checkoutForm">
-                  ${cartList.length === 0
-                    ? html` <div class="subsection">
-                        <p class="empty-cart">
-                          Your <iron-icon icon="shopping-cart"></iron-icon> is
-                          empty.
-                        </p>
-                      </div>`
-                    : html`
-                        <progress-step .stepListItems="${stepListItems}">
-                        </progress-step>
-                        <header class="subsection">
-                          <h1>Payment Section</h1>
-                        </header>
+                <lion-form>
+                  <form id="checkoutForm">
+                    ${cartList.length === 0
+                      ? html` <div class="subsection">
+                          <p class="empty-cart">
+                            Your <iron-icon icon="shopping-cart"></iron-icon> is
+                            empty.
+                          </p>
+                        </div>`
+                      : html`
+                          <progress-step .stepListItems="${stepListItems}">
+                          </progress-step>
+                          <header class="subsection">
+                            <h1>Payment Section</h1>
+                          </header>
 
-                        <div class="subsection grid">
-                          <section>
-                            <h2>Payment Method</h2>
-                            <div class="row input-row">
-                              <shop-input>
-                                <input
+                          <div class="subsection grid">
+                            <section>
+                              <h2>Payment Method</h2>
+                              <div class="row input-row">
+                                <lion-input
                                   type="text"
                                   id="ccName"
                                   name="ccName"
                                   pattern=".{3,}"
-                                  placeholder="Cardholder Name"
-                                  required
-                                  autocomplete="cc-name"
-                                />
-                                <shop-md-decorator
-                                  error-message="Invalid Cardholder Name"
-                                  aria-hidden="true"
-                                >
-                                  <label for="ccName">Cardholder Name</label>
-                                  <shop-underline></shop-underline>
-                                </shop-md-decorator>
-                              </shop-input>
-                            </div>
-                            <div class="row input-row">
-                              <shop-input>
-                                <input
+                                  label="Cardholder Name"
+                                ></lion-input>
+                              </div>
+                              <div class="row input-row">
+                                <lion-input
                                   type="tel"
                                   id="ccNumber"
                                   name="ccNumber"
                                   pattern="[\\d\\s]{15,}"
-                                  placeholder="Card Number"
+                                  label="Card Number"
                                   required
                                   autocomplete="cc-number"
-                                />
-                                <shop-md-decorator
-                                  error-message="Invalid Card Number"
-                                  aria-hidden="true"
-                                >
-                                  <label for="ccNumber">Card Number</label>
-                                  <shop-underline></shop-underline>
-                                </shop-md-decorator>
-                              </shop-input>
-                            </div>
-                            <div class="row input-row">
-                              <div class="column">
-                                <label for="ccExpMonth">Expiry</label>
-                                <shop-select>
-                                  <select
-                                    id="ccExpMonth"
-                                    name="ccExpMonth"
-                                    required
-                                    autocomplete="cc-exp-month"
-                                    aria-label="Expiry month"
-                                  >
-                                    <option value="01" selected>Jan</option>
-                                    <option value="02">Feb</option>
-                                    <option value="03">Mar</option>
-                                    <option value="04">Apr</option>
-                                    <option value="05">May</option>
-                                    <option value="06">Jun</option>
-                                    <option value="07">Jul</option>
-                                    <option value="08">Aug</option>
-                                    <option value="09">Sep</option>
-                                    <option value="10">Oct</option>
-                                    <option value="11">Nov</option>
-                                    <option value="12">Dec</option>
-                                  </select>
-                                  <shop-md-decorator aria-hidden="true">
-                                    <shop-underline></shop-underline>
-                                  </shop-md-decorator>
-                                </shop-select>
+                                ></lion-input>
                               </div>
-                              <shop-select>
-                                <select
-                                  id="ccExpYear"
-                                  name="ccExpYear"
-                                  required
-                                  autocomplete="cc-exp-year"
-                                  aria-label="Expiry year"
-                                >
-                                  <option value="2016" selected>2016</option>
-                                  <option value="2017">2017</option>
-                                  <option value="2018">2018</option>
-                                  <option value="2019">2019</option>
-                                  <option value="2020">2020</option>
-                                  <option value="2021">2021</option>
-                                  <option value="2022">2022</option>
-                                  <option value="2023">2023</option>
-                                  <option value="2024">2024</option>
-                                  <option value="2025">2025</option>
-                                  <option value="2026">2026</option>
-                                </select>
-                                <shop-md-decorator aria-hidden="true">
-                                  <shop-underline></shop-underline>
-                                </shop-md-decorator>
-                              </shop-select>
-                              <shop-input>
-                                <input
+                              <div class="row input-row">
+                                <div class="column">
+                                  <label for="ccExpMonth">Expiry</label>
+                                  <lion-select name="ccExpMonth">
+                                    <select
+                                      slot="input"
+                                      id="ccExpMonth"
+                                      name="ccExpMonth"
+                                      required
+                                      autocomplete="cc-exp-month"
+                                      aria-label="Expiry month"
+                                    >
+                                      <option value="01" selected>Jan</option>
+                                      <option value="02">Feb</option>
+                                      <option value="03">Mar</option>
+                                      <option value="04">Apr</option>
+                                      <option value="05">May</option>
+                                      <option value="06">Jun</option>
+                                      <option value="07">Jul</option>
+                                      <option value="08">Aug</option>
+                                      <option value="09">Sep</option>
+                                      <option value="10">Oct</option>
+                                      <option value="11">Nov</option>
+                                      <option value="12">Dec</option>
+                                    </select>
+                                  </lion-select>
+                                </div>
+                                <lion-select name="ccExpYear">
+                                  <select
+                                    slot="input"
+                                    id="ccExpYear"
+                                    name="ccExpYear"
+                                    required
+                                    autocomplete="cc-exp-year"
+                                    aria-label="Expiry year"
+                                  >
+                                    <option value="2016" selected>2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                  </select>
+                                </lion-select>
+                                <lion-input
                                   type="tel"
                                   id="ccCVV"
                                   name="ccCVV"
@@ -234,44 +212,38 @@ class ShopPayment extends connect(store)(PageViewElement) {
                                   placeholder="CVV"
                                   required
                                   autocomplete="cc-csc"
-                                />
-                                <shop-md-decorator
-                                  error-message="Invalid CVV"
-                                  aria-hidden="true"
-                                >
-                                  <label for="ccCVV">CVV</label>
-                                  <shop-underline></shop-underline>
-                                </shop-md-decorator>
-                              </shop-input>
-                            </div>
-                            <h2>Order Summary</h2>
-                            ${repeat(
-                              cartList,
-                              (entry) => html`
-                                <div class="row order-summary-row">
-                                  <div class="flex product-name">
-                                    ${entry.title}
-                                  </div>
-                                  <div class="product-price">
-                                    $${(entry.quantity * entry.price).toFixed(
-                                      2,
-                                    )}
-                                  </div>
-                                </div>
-                              `,
-                            )}
-                            <div class="row total-row">
-                              <div class="flex total-summary">Total</div>
-                              <div class="total-summary">
-                                $${basketSummary.price.toFixed(2)}
+                                ></lion-input>
                               </div>
-                            </div>
+                              <h2>Order Summary</h2>
+                              ${repeat(
+                                cartList,
+                                (entry) => html`
+                                  <div class="row order-summary-row">
+                                    <div class="flex product-name">
+                                      ${entry.title}
+                                    </div>
+                                    <div class="product-price">
+                                      $${(entry.quantity * entry.price).toFixed(
+                                        2,
+                                      )}
+                                    </div>
+                                  </div>
+                                `,
+                              )}
+                              <div class="row total-row">
+                                <div class="flex total-summary">Total</div>
+                                <div class="total-summary">
+                                  $${basketSummary.price.toFixed(2)}
+                                </div>
+                              </div>
 
-                            <payment-button-controls> </payment-button-controls>
-                          </section>
-                        </div>
-                      `}
-                </form>
+                              <payment-button-controls>
+                              </payment-button-controls>
+                            </section>
+                          </div>
+                        `}
+                  </form>
+                </lion-form>
               </div>
             `
           : this._state === 'success'
