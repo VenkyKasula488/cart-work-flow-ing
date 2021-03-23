@@ -1,7 +1,11 @@
 import { LitElement, html } from 'lit-element';
 import './shop-image.js';
 import { store } from '../store.js';
+import '@polymer/paper-icon-button';
 import '@lion/input-stepper/lion-input-stepper.js';
+import '@lion/icon/lion-icon.js';
+import './shop-icons.js';
+import { removeFromCart } from '../actions/cart.js';
 
 class ShopCartItem extends LitElement {
   render() {
@@ -36,7 +40,6 @@ class ShopCartItem extends LitElement {
           min-width: 250px;
           margin-top: 26px;
           margin-right: 10px;
-          border: 1px solid red;
         }
         .flex .name {
           min-width: 250px;
@@ -72,6 +75,7 @@ class ShopCartItem extends LitElement {
           min-width: 70px;
           width: 100px;
           padding-left: 10px;
+          padding-top: 20px;
           display: flex;
         }
 
@@ -181,6 +185,12 @@ class ShopCartItem extends LitElement {
                   </lion-input-stepper>
                 </div>
                 <div class="price">$${entry.price.toFixed(2)}</div>
+                <paper-icon-button
+                  class="delete-button"
+                  icon="close"
+                  aria-label="Delete item ${entry.title}"
+                  @click="${this._removeItem}"
+                ></paper-icon-button>
               </div>
             </div>
           `
@@ -191,6 +201,14 @@ class ShopCartItem extends LitElement {
     return {
       entry: { type: Object },
     };
+  }
+
+  _removeItem() {
+    store.dispatch(
+      removeFromCart({
+        skuId: this.entry.skuId,
+      }),
+    );
   }
 }
 

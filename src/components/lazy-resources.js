@@ -7,6 +7,7 @@ import './shop-404.js';
 
 // shop-cart
 import './shop-cart-item.js';
+import '@polymer/paper-icon-button';
 
 import './progress-step.js';
 import './cart-button-controls.js';

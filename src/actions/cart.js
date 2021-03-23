@@ -1,4 +1,5 @@
 export const SET_CART = 'SET_CART';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 
 export const setCart = (cart) => {
   return {
@@ -17,5 +18,13 @@ export const fetchCategoriesIfNeeded = () => (dispatch, getState) => {
         resolve();
       })
       .catch(() => console.log('Got Error'));
+  });
+};
+
+export const removeFromCart = ({ skuId }) => (dispatch) => {
+  console.log('entry ', skuId);
+  dispatch({
+    type: REMOVE_FROM_CART,
+    skuId,
   });
 };

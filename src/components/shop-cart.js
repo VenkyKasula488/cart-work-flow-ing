@@ -73,11 +73,7 @@ class ShopCart extends connect(store)(PageViewElement) {
                 </div>
                 <cart-button-controls> </cart-button-controls>
               `
-            : html`
-                <p class="empty-cart">
-                  Your <iron-icon icon="shopping-cart"></iron-icon> is empty.
-                </p>
-              `}
+            : html` <p class="empty-cart">Your Cart Is Empty.</p> `}
         </div>
       </div>`;
   }
