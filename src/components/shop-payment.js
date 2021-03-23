@@ -35,16 +35,11 @@ class ShopPayment extends connect(store)(PageViewElement) {
         .main-frame {
           transition: opacity 0.5s;
         }
-        h2 {
-        }
 
-        shop-input,
-        shop-select {
+        lion-input,
+        lion-select,
+        .input-column label {
           font-size: 16px;
-        }
-
-        shop-select {
-          margin-bottom: 20px;
         }
 
         .billing-address-picker {
@@ -100,6 +95,15 @@ class ShopPayment extends connect(store)(PageViewElement) {
         .product-price {
           margin-top: 5px;
         }
+
+        .input-row {
+          padding-top: 10px;
+        }
+
+        h2 {
+          padding-top: 10px;
+        }
+
         @media (max-width: 767px) {
           .grid {
             display: block;
@@ -156,7 +160,7 @@ class ShopPayment extends connect(store)(PageViewElement) {
                                 ></lion-input>
                               </div>
                               <div class="row input-row">
-                                <div class="column">
+                                <div class="column input-column">
                                   <label for="ccExpMonth">Expiry</label>
                                   <lion-select name="ccExpMonth">
                                     <select

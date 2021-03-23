@@ -36,13 +36,10 @@ class ShopCheckout extends connect(store)(PageViewElement) {
           transition: opacity 0.5s;
         }
 
-        shop-input,
-        shop-select {
+        lion-input,
+        lion-select,
+        .shop-select-label {
           font-size: 16px;
-        }
-
-        shop-select {
-          margin-bottom: 20px;
         }
 
         .billing-address-picker {
@@ -124,8 +121,9 @@ class ShopCheckout extends connect(store)(PageViewElement) {
               <progress-step
                   .stepListItems="${stepListItems}">
               </progress-step>
+
               <header class="subsection">
-                <h1>Address Section</h1>
+                <h1>Delivery Address </h1>
               </header>
 
               <div class="subsection grid">
@@ -142,7 +140,7 @@ class ShopCheckout extends connect(store)(PageViewElement) {
                   <h2 id="shipAddressHeading">Shipping Address</h2>
                   <div class="row input-row">
                     <lion-input type="text" id="shipAddress" name="shipAddress"
-                    pattern=".{5,} label="Address">
+                    pattern=".{5,}" label="Address">
                     </lion-input>
                   </div>
                   <div class="row input-row">
