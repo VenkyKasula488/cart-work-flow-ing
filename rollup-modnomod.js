@@ -1,13 +1,3 @@
-/**
- * @license
- * Copyright (c) 2020 The Polymer Project Authors. All rights reserved.
- * This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
- * The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
- * The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
- * Code distributed by Google as part of the polymer project is also
- * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
- */
-
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
@@ -35,10 +25,10 @@ const babelConfig = {
 const minifyHTMLLiteralsConfig = {
   options: {
     minifyOptions: {
-      removeAttributeQuotes: false
-    }
-  }
-}
+      removeAttributeQuotes: false,
+    },
+  },
+};
 
 const filesizeConfig = {
   showGzippedSize: true,
@@ -49,10 +39,17 @@ const filesizeConfig = {
 const copyConfig = {
   targets: [
     { src: 'node_modules/@webcomponents', dest: 'build-modnomod/node_modules' },
-    { src: 'node_modules/systemjs/dist/s.min.js', dest: 'build-modnomod/node_modules/systemjs/dist' },
+    {
+      src: 'node_modules/systemjs/dist/s.min.js',
+      dest: 'build-modnomod/node_modules/systemjs/dist',
+    },
     { src: 'images', dest: 'build-modnomod' },
     { src: 'data', dest: 'build-modnomod' },
-    { src: 'index-modnomod.html', dest: 'build-modnomod', rename: 'index.html' },
+    {
+      src: 'index-modnomod.html',
+      dest: 'build-modnomod',
+      rename: 'index.html',
+    },
   ],
 };
 
@@ -65,10 +62,7 @@ const configs = [
       dir: 'build-modnomod/src/components',
       format: 'es',
     },
-    plugins: [
-      minifyHTML(minifyHTMLLiteralsConfig),
-      resolve()
-    ],
+    plugins: [minifyHTML(minifyHTMLLiteralsConfig), resolve()],
     preserveEntrySignatures: false,
   },
   // The main JavaScript bundle for older browsers that don't support

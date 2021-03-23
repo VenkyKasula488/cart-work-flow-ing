@@ -1,13 +1,3 @@
-/**
- * @license
- * Copyright (c) 2020 The Polymer Project Authors. All rights reserved.
- * This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
- * The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
- * The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
- * Code distributed by Google as part of the polymer project is also
- * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
- */
-
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
@@ -40,11 +30,21 @@ const filesizeConfig = {
 
 const copyConfig = {
   targets: [
-    { src: 'node_modules/@webcomponents', dest: 'build-universal/node_modules' },
-    { src: 'node_modules/systemjs/dist/s.min.js', dest: 'build-universal/node_modules/systemjs/dist' },
+    {
+      src: 'node_modules/@webcomponents',
+      dest: 'build-universal/node_modules',
+    },
+    {
+      src: 'node_modules/systemjs/dist/s.min.js',
+      dest: 'build-universal/node_modules/systemjs/dist',
+    },
     { src: 'images', dest: 'build-universal' },
     { src: 'data', dest: 'build-universal' },
-    { src: 'index-universal.html', dest: 'build-universal', rename: 'index.html' },
+    {
+      src: 'index-universal.html',
+      dest: 'build-universal',
+      rename: 'index.html',
+    },
   ],
 };
 
@@ -57,12 +57,7 @@ const configs = [
       dir: 'build-universal/nomodule/src/components',
       format: 'systemjs',
     },
-    plugins: [
-      minifyHTML(),
-      babel(babelConfig),
-      resolve(),
-      copy(copyConfig),
-    ],
+    plugins: [minifyHTML(), babel(babelConfig), resolve(), copy(copyConfig)],
     preserveEntrySignatures: false,
   },
   // Babel polyfills for older browsers that don't support ES2015+.

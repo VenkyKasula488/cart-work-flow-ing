@@ -2,6 +2,9 @@ import { LitElement, html } from 'lit-element';
 import { shopButtonStyle } from './shop-button-style.js';
 import '@lion/button/lion-button.js';
 
+/**
+ * Cart Navigation controls
+ */
 class CartButtonControls extends LitElement {
   render() {
     return html` ${shopButtonStyle}

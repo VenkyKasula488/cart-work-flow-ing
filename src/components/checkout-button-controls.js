@@ -1,6 +1,9 @@
 import { LitElement, html } from 'lit-element';
 import { shopButtonStyle } from './shop-button-style.js';
 
+/**
+ * Checkout Navigation controls
+ */
 class CheckoutButtonControls extends LitElement {
   render() {
     return html` ${shopButtonStyle}

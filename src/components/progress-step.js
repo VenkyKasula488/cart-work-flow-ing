@@ -1,6 +1,9 @@
 import { LitElement, html } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat.js';
 
+/**
+ * Cart progress stepper
+ */
 class ProgressStep extends LitElement {
   render() {
     const stepListItems = this.stepListItems;
