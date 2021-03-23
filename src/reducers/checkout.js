@@ -1,6 +1,12 @@
 import { UPDATE_CHECKOUT_STATE } from '../actions/checkout.js';
 import { UPDATE_LOCATION } from '../actions/app.js';
 
+/**
+ * Checkout reducer - recieves the actions and updates the store
+ * @param {Object} state
+ * @param {Object} action
+ * @returns Updated stated
+ */
 const checkout = (state = {}, action) => {
   switch (action.type) {
     // Any navigation should reset the checkout form.

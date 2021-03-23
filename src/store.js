@@ -11,6 +11,9 @@ import cart from './reducers/cart.js';
 
 const compose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || origCompose;
 
+/**
+ * Store configuration
+ */
 export const store = createStore(
   (state, action) => state,
   compose(lazyReducerEnhancer(combineReducers), applyMiddleware(thunk)),

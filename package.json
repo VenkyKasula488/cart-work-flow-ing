@@ -25,7 +25,6 @@
     "@lion/icon": "^0.11.0",
     "@lion/input": "^0.12.0",
     "@lion/input-email": "^0.11.0",
-    "@lion/input-stepper": "^0.3.0",
     "@lion/select": "^0.10.0",
     "@polymer/app-layout": "^3.0.0",
     "@polymer/iron-icon": "^3.0.0",

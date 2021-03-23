@@ -10,7 +10,7 @@ export const RECEIVE_LAZY_RESOURCES = 'RECEIVE_LAZY_RESOURCES';
 export const reloadCategory = () => async (dispatch, getState) => {
   let state = getState();
   const page = state.app.page;
-  if (['cart', 'checkout', 'payment', 'confirmation'].indexOf(page) === -1) {
+  if (['cart', 'checkout', 'payment', 'confirmation'].indexOf(page) >= 0) {
     return;
   }
   dispatch({

@@ -1,6 +1,12 @@
 import { SET_CART, REMOVE_FROM_CART } from '../actions/cart.js';
 import { createSelector } from 'reselect';
 
+/**
+ * Cart reducer - recieves the actions and updates the store
+ * @param {Object} state
+ * @param {Object} action
+ * @returns Updated stated
+ */
 const cart = (state = {}, action) => {
   switch (action.type) {
     case SET_CART:
@@ -11,13 +17,11 @@ const cart = (state = {}, action) => {
     case REMOVE_FROM_CART:
       const result = { ...state };
       const basketData = result.basket;
-      console.log('RR : ', basketData, action.skuId);
-      const finalResult = basketData.filter((item) => {
+      const filteredItems = basketData.filter((item) => {
         return action.skuId !== item.skuId;
       });
-      const hh = { ...state, ...{ basket: finalResult } };
-      console.log('finalResult :', hh);
-      return hh;
+      const finalItems = { ...state, ...{ basket: filteredItems } };
+      return finalItems;
     default:
       return state;
   }

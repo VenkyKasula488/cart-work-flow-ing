@@ -2,6 +2,10 @@ import { setCart } from './actions/cart.js';
 
 const CART_LOCAL_STORAGE_KEY = 'shop-cart-data';
 
+/**
+ * To pull local storage if any
+ * @returns local data
+ */
 function getLocalCartData() {
   const localCartData = localStorage.getItem(CART_LOCAL_STORAGE_KEY);
   try {
@@ -11,6 +15,10 @@ function getLocalCartData() {
   }
 }
 
+/**
+ * To update the local storage
+ * @param {Object} store
+ */
 export function installCart(store) {
   function handleStorageEvent(event) {
     if (event == null || document.hidden) {
