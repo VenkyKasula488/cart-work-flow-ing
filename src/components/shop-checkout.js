@@ -15,6 +15,7 @@ import checkout from '../reducers/checkout.js';
 import '@lion/form/lion-form.js';
 import '@lion/input/lion-input.js';
 import '@lion/select/lion-select.js';
+import { isCartHasVoucherOnlyHelper } from '../helpers/isCartHasVoucherOnlyHelper.js';
 
 store.addReducers({
   checkout,
@@ -25,6 +26,7 @@ store.addReducers({
 class ShopCheckout extends connect(store)(PageViewElement) {
   render() {
     const cartList = this._cart || [];
+    const isCartHasVoucherOnly = isCartHasVoucherOnlyHelper(cartList);
     const address = this._address;
     const stepListItems = [
       { name: 'Basket', progress: 'done' },
@@ -121,27 +123,38 @@ class ShopCheckout extends connect(store)(PageViewElement) {
                           </p>
                         </div>`
                       : html`
-              <progress-step
-                  .stepListItems="${stepListItems}">
-              </progress-step>
+                          <progress-step .stepListItems="${stepListItems}">
+                          </progress-step>
 
-              <header class="subsection">
-                <h1>The Delivery Address</h1>
-              </header>
-
+                          <header class="subsection">
+                            <h1>The Delivery Address</h1>
+                          </header>
+                          ${isCartHasVoucherOnly
+                            ? html` <div class="subsection grid">
+                                <section>
+                                  <div class="row input-row">
+                                    <lion-input
+                                      name="email"
+                                      label="Email"
+                                      .modelValue=${address.personalEmailAddress}
+                                    ></lion-input>
+                                  </div>
+                                </section>
+                              </div>`
+                            : html`
               <div class="subsection grid">
                 <section>
                   <h2 id="accountInfoHeading">Account Information</h2>
+                  <div class="row input-row">
+                  <lion-input name="email" label="Email" .modelValue=${
+                    address.personalEmailAddress
+                  }></lion-input>
+                  </div>
                   <div class="row input-row">
                     <lion-input name="firstName" label="First Name" .modelValue=${
                       address.correspondenceName
                     }></lion-input>
                   </div>
-                  <div class="row input-row">
-                  <lion-input name="email" label="Email" .modelValue=${
-                    address.personalEmailAddress
-                  }></lion-input>
-                </div>
                   <div class="row input-row">
                     <lion-input type="tel" id="accountPhone" name="accountPhone"
                     pattern="\\d{10,}" label="Phone Number" .modelValue=${
@@ -262,11 +275,10 @@ class ShopCheckout extends connect(store)(PageViewElement) {
                         `
                       : null
                   }
-                  <checkout-button-controls> </checkout-button-controls>
                 </section>
-
-              </div>
-            `}
+              </div>`}
+                          <checkout-button-controls> </checkout-button-controls>
+                        `}
                   </form>
                 </lion-form>
               </div>
